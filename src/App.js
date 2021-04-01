@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect, useState} from 'react'
+import firebase from 'firebase'
+import {db} from './configs/firebase'
+import './App.css'
+
+import Header from './components/Header'
+import ImagePost from './components/ImagePost'
+import Post from './components/Post'
 
 function App() {
+
+  const [posts,setPosts] = useState([])
+  const [displayName,setdisplayName] = useState('')
+
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        setdisplayName(user?.displayName)
+    } else {
+        // No user is signed in.
+    }
+    })
+
+  // Getting data from database to the state
+  useEffect(() => {
+    db.collection('posts').orderBy('timestamp','desc').onSnapshot(snapshot => {
+      setPosts(snapshot.docs.map(doc => ({
+        id: doc.id,
+        post: doc.data(),
+      })))
+    })
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+
+      {
+        displayName ? <ImagePost displayName={displayName} /> :
+        <h3 style={{textAlign:'center',padding:'20px 10px'}}>Login to post</h3>
+      }
+
+      {/* Looping through posts */}
+      {
+        posts.map(({id,post}) => (
+          <Post 
+            key={id}
+            username= {post.username}
+            caption= {post.caption}
+            imgUrl= {post.imgUrl}
+          />
+        ))
+      }
+      {/* ./Looping through posts */}
+ 
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
