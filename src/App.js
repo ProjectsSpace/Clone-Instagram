@@ -10,14 +10,14 @@ import Post from './components/Post'
 function App() {
 
   const [posts,setPosts] = useState([])
-  const [displayName,setdisplayName] = useState('')
+  const [displayName,setDisplayName] = useState('')
 
     firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        setdisplayName(user?.displayName)
-    } else {
-        // No user is signed in.
-    }
+      if (user) {
+          setDisplayName(user?.displayName)
+      } else {
+          // No user is signed in.
+      }
     })
 
   // Getting data from database to the state
@@ -44,6 +44,7 @@ function App() {
         posts.map(({id,post}) => (
           <Post 
             key={id}
+            postID={id}
             username= {post.username}
             caption= {post.caption}
             imgUrl= {post.imgUrl}

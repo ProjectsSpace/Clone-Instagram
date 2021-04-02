@@ -21,6 +21,10 @@
 }
 
 .post_cap {
-  font-weight: normal;
   padding: 20px;
+}
+.comments__box {
+  overflow: scroll;
+  max-height: 200px;
+  overflow-x: hidden;
 }

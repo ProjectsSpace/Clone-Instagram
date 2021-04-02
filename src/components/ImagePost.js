@@ -13,10 +13,10 @@ const useStyles = makeStyles(() => ({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      padding: '40px'
+      margin: '40px 0'
   },
   input__holder: {
-    width: '600px',
+    maxWidth: '600px',
     padding: '20px',
     background: '#fafafa',
     boxShadow: '5px 5px 10px #e7e7e7, -5px -5px 10px #f5f5f5',
