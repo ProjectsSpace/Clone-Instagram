@@ -19,10 +19,10 @@ function Post(props) {
                 alt=""
             />
             
-            <h4 className="post_cap">
+            <p className="post_cap">
                 <strong>{props.username}</strong>: &nbsp;
                 {props.caption}
-            </h4>
+            </p>
         </div>
     )
 }
