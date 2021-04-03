@@ -1,4 +1,7 @@
 .app__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background-color: #fff;
   object-fit: contain;
   padding: 20px;

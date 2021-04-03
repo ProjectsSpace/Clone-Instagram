@@ -109,7 +109,7 @@ function Header() {
     // Logout handling
     function handleLogout (e) {
         auth.signOut()
-
+      
         setUsername('')
         setPassword('')
         setEmail('')

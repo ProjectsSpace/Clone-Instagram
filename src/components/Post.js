@@ -17,7 +17,7 @@ function Post(props) {
           // No user is signed in.
       }
     })
-
+    
     useEffect(() => {
         let unsubscribe;
         if (props.postID) {
